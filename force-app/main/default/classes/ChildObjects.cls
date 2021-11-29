@@ -6,7 +6,6 @@ global class ChildObjects extends VisualEditor.DynamicPickList{
     }
     global ChildObjects(VisualEditor.DesignTimePageContext context) {
        this.context = context;
-       system.debug(JSON.serialize(context.entityName));
     }
     global override VisualEditor.DynamicPickListRows getValues() {
         VisualEditor.DynamicPickListRows  childObjectValues= new VisualEditor.DynamicPickListRows();
