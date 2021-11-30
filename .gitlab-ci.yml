@@ -1,18 +1,30 @@
+image: <image ready for your build toolchain>
+
+cache:
+  paths:
+    - .sonar
+
+stages:
+  - download
+  - build
+  - scan
+
+download:
+  stage: download
+  script:
+      - mkdir -p .sonar
+      - curl -sSLo build-wrapper-linux-x86.zip  $SONAR_HOST_URL/static/cpp/build-wrapper-linux-x86.zip
+      - unzip -o build-wrapper-linux-x86.zip -d .sonar
+
+build:
+  stage: build
+  script:
+      - .sonar/build-wrapper-linux-x86/build-wrapper-linux-x86-64 --out-dir .sonar/bw-output <your clean build command>
+
 sonarqube-check:
-  image: 
-    name: sonarsource/sonar-scanner-cli:latest
-    entrypoint: [""]
-  variables:
-    SONAR_USER_HOME: "${CI_PROJECT_DIR}/.sonar"  # Defines the location of the analysis task cache
-    GIT_DEPTH: "0"  # Tells git to fetch all the branches of the project, required by the analysis task
-  cache:
-    key: "${CI_JOB_NAME}"
-    paths:
-      - .sonar/cache
+  stage: scan
   script: 
-    - sonar-scanner
+    - curl -sSLo sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.6.2.2472-linux.zip
+    - unzip -o sonar-scanner.zip -d .sonar
+    - .sonar/sonar-scanner-4.6.2.2472-linux/bin/sonar-scanner -Dsonar.cfamily.build-wrapper-output=.sonar/bw-output
   allow_failure: true
-  only:
-    - merge_requests
-    - master # or the name of your main branch
-    - develop
