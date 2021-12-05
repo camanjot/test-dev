@@ -129,6 +129,7 @@ var callbacks = {};
         } else if (_result.message == 'Fail' || !_result.isSuccess) {
             return undefined;
         }
+        console.log('Hey');
     };
     /**
      * Todo: Prepare the toast object and return back to the calling JS class
