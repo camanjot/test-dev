@@ -1,20 +1,3 @@
-####################################################
-# The docker image the jobs initialize with.
-# We use nodejs, so a node image makes sense.
-# https://docs.gitlab.com/ee/ci/yaml/README.html#image
-####################################################
-image: "node:latest"
-####################################################
-# Cache node modules between jobs.
-# Downloading node dependencies can take a long time,
-# avoiding that cost between jobs/stages is good.
-# https://docs.gitlab.com/ee/ci/yaml/README.html#cache
-####################################################
-cache:
-  key: ${CI_COMMIT_REF_NAME}
-  paths:
-    - node_modules/
-    - .sfdx/
 sonarqube-check:
   image: 
     name: sonarsource/sonar-scanner-cli:latest
