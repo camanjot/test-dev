@@ -1,5 +1,8 @@
-stage: deploy
-script:
+variables: 
+  CI_PROJECT_DIR: /builds/vineeth_krishnan/test-dev
+test_variable:
+  stage: test
+  script:
     - echo "$CI_JOB_STAGE"
 sonarqube-check:
   image: 
@@ -11,9 +14,9 @@ sonarqube-check:
   cache:
     key: "${CI_JOB_NAME}"
     paths:
-      - .SonarQube/cache
+      - .sonar/cache
   script: 
-    - SonarScanner
+    - sonar-scanner
   allow_failure: true
   only:
     - merge_requests
