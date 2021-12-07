@@ -1,5 +1,9 @@
 variables: 
-  CI_PROJECT_DIR: /builds/vineeth_krishnan/test-dev
+  CI_PROJECT_DIR: /builds/vineeth_krishnan/test-dev/-/tree/devbranch
+test_variable:
+  stage: test
+  script:
+    - echo "$CI_JOB_STAGE"
 sonarqube-check:
   image: 
     name: sonarsource/sonar-scanner-cli:latest
