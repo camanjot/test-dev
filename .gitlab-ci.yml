@@ -1,5 +1,5 @@
 variables: 
-  CI_PROJECT_DIR: /builds/vineeth_krishnan/test-dev/-/tree/devbranch
+  CI_PROJECT_DIR: /builds/vineeth_krishnan/test-dev
 test_variable:
   stage: test
   script:
