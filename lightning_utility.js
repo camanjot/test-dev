@@ -112,7 +112,6 @@ var callbacks = {};
                     _onerror(_reduceErrors(_result.payload));
                 }
             }
-            console.log('hey');
         })
         .catch(_error => {
             if (_error && _onerror) {
