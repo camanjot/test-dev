@@ -22,7 +22,7 @@ stages:
 - chatops
 
 ls:
-  stage: chatops  s
+  stage: chatops
   script:
     - echo "Hello World"
     - echo "This command will not be shown."
